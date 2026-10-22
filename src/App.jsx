@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router";
 import { makeStyles } from "@material-ui/styles";
 import { loader } from "@monaco-editor/react";
 import { Button, AppBar, Toolbar } from "@material-ui/core";
@@ -104,70 +104,49 @@ export default function App() {
       </AppBar>
       <div className={classes.body}>
         <React.Suspense fallback={<div>Loading...</div>}>
-          <Switch>
-            <Route exact path="/">
-              {ERRORS_INSPECTOR_ENABLED ? (
-                <ErrorsInspector />
-              ) : (
-                <WorkflowSearch />
-              )}
-            </Route>
-            <Route exact path="/executions">
-              <WorkflowSearch />
-            </Route>
-            <Route exact path="/search/tasks">
-              <TaskSearch />
-            </Route>
-            <Route path="/execution/:id/:taskId?">
-              <Execution />
-            </Route>
-            <Route exact path="/workflowDefs">
-              <WorkflowDefinitions />
-            </Route>
-            <Route exact path="/workflowDef/:name?/:version?">
-              <WorkflowDefinition />
-            </Route>
-            <Route exact path="/taskDefs">
-              <TaskDefinitions />
-            </Route>
-            <Route exact path="/taskDef/:name?">
-              <TaskDefinition />
-            </Route>
-            <Route exact path="/eventHandlerDefs">
-              <EventHandlerDefinitions />
-            </Route>
-            <Route exact path="/eventHandlerDef/:event?/:name?">
-              <EventHandlerDefinition />
-            </Route>
-            <Route exact path="/schedulerDefs">
-              <SchedulerDefinitions />
-            </Route>
-            <Route exact path="/schedulerDef/:name?">
-              <SchedulerDefinition />
-            </Route>
-            <Route exact path="/schedulerExecs">
-              <SchedulerExecutions />
-            </Route>
-            <Route exact path="/taskQueue/:name?">
-              <TaskQueue />
-            </Route>
-            <Route exact path="/workbench">
-              <Workbench />
-            </Route>
-            <Route exact path="/kitchen">
-              <KitchenSink />
-            </Route>
-            <Route exact path="/kitchen/diagram">
-              <DiagramTest />
-            </Route>
-            <Route exact path="/kitchen/examples">
-              <Examples />
-            </Route>
-            <Route exact path="/kitchen/gantt">
-              <Gantt />
-            </Route>
-            <CustomRoutes />
-          </Switch>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                ERRORS_INSPECTOR_ENABLED ? (
+                  <ErrorsInspector />
+                ) : (
+                  <WorkflowSearch />
+                )
+              }
+            />
+            <Route path="/executions" element={<WorkflowSearch />} />
+            <Route path="/search/tasks" element={<TaskSearch />} />
+            <Route path="/execution/:id/:taskId?/*" element={<Execution />} />
+            <Route path="/workflowDefs" element={<WorkflowDefinitions />} />
+            <Route
+              path="/workflowDef/:name?/:version?"
+              element={<WorkflowDefinition />}
+            />
+            <Route path="/taskDefs" element={<TaskDefinitions />} />
+            <Route path="/taskDef/:name?" element={<TaskDefinition />} />
+            <Route
+              path="/eventHandlerDefs"
+              element={<EventHandlerDefinitions />}
+            />
+            <Route
+              path="/eventHandlerDef/:event?/:name?"
+              element={<EventHandlerDefinition />}
+            />
+            <Route path="/schedulerDefs" element={<SchedulerDefinitions />} />
+            <Route
+              path="/schedulerDef/:name?"
+              element={<SchedulerDefinition />}
+            />
+            <Route path="/schedulerExecs" element={<SchedulerExecutions />} />
+            <Route path="/taskQueue/:name?" element={<TaskQueue />} />
+            <Route path="/workbench" element={<Workbench />} />
+            <Route path="/kitchen" element={<KitchenSink />} />
+            <Route path="/kitchen/diagram" element={<DiagramTest />} />
+            <Route path="/kitchen/examples" element={<Examples />} />
+            <Route path="/kitchen/gantt" element={<Gantt />} />
+            <Route path="*" element={<CustomRoutes />} />
+          </Routes>
         </React.Suspense>
       </div>
     </div>

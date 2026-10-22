@@ -1,6 +1,6 @@
 import React, { useMemo, useRef, useState } from "react";
 import { Toolbar } from "@material-ui/core";
-import { useRouteMatch } from "react-router-dom";
+import { useRouteMatch } from "../../hooks/useRouteMatch";
 import { makeStyles } from "@material-ui/styles";
 import { Helmet } from "react-helmet";
 import _ from "lodash";
@@ -33,7 +33,7 @@ const useStyles = makeStyles({
 
 export default function TaskDefinition() {
   const classes = useStyles();
-  const match = useRouteMatch();
+  const match = useRouteMatch("/taskDef/:name?");
   const navigate = usePushHistory();
 
   const [isModified, setIsModified] = useState(false);

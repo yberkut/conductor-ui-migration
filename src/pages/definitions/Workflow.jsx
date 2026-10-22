@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { NavLink, DataTable, Button } from "../../components";
 import { makeStyles } from "@material-ui/styles";
 import _ from "lodash";
-import { useQueryState } from "react-router-use-location-state";
+import { useQueryState } from "../../hooks/useQueryState";
 import { useLatestWorkflowDefs } from "../../data/workflow";
 import Header from "./Header";
 import sharedStyles from "../styles";

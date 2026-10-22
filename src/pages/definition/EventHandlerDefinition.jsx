@@ -1,5 +1,5 @@
 import React, { useMemo, useRef, useState } from "react";
-import { useRouteMatch } from "react-router-dom";
+import { useRouteMatch } from "../../hooks/useRouteMatch";
 import { makeStyles } from "@material-ui/styles";
 import { Helmet } from "react-helmet";
 import { Button, LinearProgress, Pill, Text } from "../../components";
@@ -35,7 +35,7 @@ const useStyles = makeStyles({
 
 export default function EventHandlerDefinition() {
   const classes = useStyles();
-  const match = useRouteMatch();
+  const match = useRouteMatch("/eventHandlerDef/:event?/:name?");
   const navigate = usePushHistory();
 
   const [isModified, setIsModified] = useState(false);

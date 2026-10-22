@@ -12,7 +12,7 @@ import {
   WorkflowNameInput,
 } from "../../components";
 import ScheduleNameInput from "../../components/ScheduleNameInput";
-import { useQueryState } from "react-router-use-location-state";
+import { useQueryState } from "../../hooks/useQueryState";
 import DateRangePicker from "../../components/DateRangePicker";
 import { DEFAULT_ROWS_PER_PAGE } from "../../components/DataTable";
 import { useSchedulerExecutionSearch } from "../../data/scheduler";

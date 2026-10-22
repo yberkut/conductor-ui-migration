@@ -1,5 +1,5 @@
 import React from "react";
-import { Link as RouterLink, useHistory } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router";
 import { Link } from "@material-ui/core";
 import LaunchIcon from "@material-ui/icons/Launch";
 import Url from "url-parse";
@@ -41,7 +41,7 @@ export default React.forwardRef((props, ref) => {
 });
 
 export function usePushHistory() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { stack, defaultStack } = useEnv();
 
   return (path) => {
@@ -50,6 +50,6 @@ export function usePushHistory() {
       url.query.stack = stack;
     }
 
-    history.push(url.toString());
+    navigate(url.toString());
   };
 }

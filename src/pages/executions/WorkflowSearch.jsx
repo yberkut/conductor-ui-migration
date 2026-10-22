@@ -11,7 +11,7 @@ import {
 } from "../../components";
 
 import { workflowStatuses } from "../../utils/constants";
-import { useQueryState } from "react-router-use-location-state";
+import { useQueryState } from "../../hooks/useQueryState";
 import SearchTabs from "./SearchTabs";
 import ResultsTable from "./ResultsTable";
 import DateRangePicker from "../../components/DateRangePicker";

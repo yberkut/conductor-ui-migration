@@ -1,4 +1,4 @@
-import { useRouteMatch } from "react-router-dom";
+import { useRouteMatch } from "../../hooks/useRouteMatch";
 import sharedStyles from "../styles";
 import { usePollData, useQueueSizes, useTaskNames } from "../../data/task";
 import { makeStyles } from "@material-ui/styles";
@@ -32,7 +32,7 @@ export default function TaskDefinition() {
   const taskNames = useTaskNames();
   const pushHistory = usePushHistory();
   const classes = useStyles();
-  const match = useRouteMatch();
+  const match = useRouteMatch("/taskQueue/:name?");
   const taskName = match.params.name || "";
 
   const { data: pollData, isFetching } = usePollData(taskName);

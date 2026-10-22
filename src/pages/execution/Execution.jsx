@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect, useCallback } from "react";
-import { useQueryState } from "react-router-use-location-state";
+import { useQueryState } from "../../hooks/useQueryState";
 import Alert from "@material-ui/lab/Alert";
 import {
   Tabs,
@@ -11,7 +11,7 @@ import {
 } from "../../components";
 import { Tooltip } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import { useRouteMatch } from "react-router-dom";
+import { useRouteMatch } from "../../hooks/useRouteMatch";
 import TaskDetails from "./TaskDetails";
 import ExecutionSummary from "./ExecutionSummary";
 import ExecutionJson from "./ExecutionJson";
@@ -115,7 +115,7 @@ const useStyles = makeStyles({
 });
 
 export default function Execution() {
-  const match = useRouteMatch();
+  const match = useRouteMatch("/execution/:id/:taskId?");
 
   const {
     data: execution,

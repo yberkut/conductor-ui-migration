@@ -1,6 +1,6 @@
 import { useMemo, useReducer, useRef, useState } from "react";
 import ReactDOM from "react-dom";
-import { useRouteMatch } from "react-router-dom";
+import { useRouteMatch } from "../../hooks/useRouteMatch";
 import { Button, Text, Select, Pill, LinearProgress } from "../../components";
 import { IconButton, MenuItem, Toolbar, Tooltip } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
@@ -102,7 +102,7 @@ function workflowDefStateReducer(state, action) {
 }
 
 export default function Workflow() {
-  const match = useRouteMatch();
+  const match = useRouteMatch("/workflowDef/:name?/:version?");
   const navigate = usePushHistory();
   const [saveDialog, setSaveDialog] = useState(null);
   const [resetDialog, setResetDialog] = useState(false); // false=idle, undefined=current_version, otherwise version id
