@@ -11,6 +11,7 @@
 /blob-report
 /test-results
 /__snapshots__
+/playwright/.cache
 
 # production
 /build

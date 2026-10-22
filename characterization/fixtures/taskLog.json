@@ -1,0 +1,17 @@
+[
+  {
+    "log": "worker picked up the task",
+    "createdTime": 1773575880000,
+    "taskId": "6ce064a7-7ef3-413c-b6af-318cb7e6751e"
+  },
+  {
+    "log": "processing batch 1 of 2",
+    "createdTime": 1773575910000,
+    "taskId": "6ce064a7-7ef3-413c-b6af-318cb7e6751e"
+  },
+  {
+    "log": "done",
+    "createdTime": 1773575940000,
+    "taskId": "6ce064a7-7ef3-413c-b6af-318cb7e6751e"
+  }
+]

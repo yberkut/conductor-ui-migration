@@ -60,7 +60,8 @@
     "test:e2e:headed": "playwright test --headed",
     "test:e2e:debug": "playwright test --debug",
     "test:ct": "playwright test --config=playwright-ct.config.ts",
-    "test:ct:ui": "playwright test --config=playwright-ct.config.ts --ui"
+    "test:ct:ui": "playwright test --config=playwright-ct.config.ts --ui",
+    "test:char": "playwright test --config=playwright.characterization.config.ts"
   },
   "browserslist": {
     "production": [
