@@ -9,7 +9,7 @@ import { matchPath, useLocation } from "react-router";
 //
 // `pattern` is the route's own path (as written in App.jsx). Matching is prefix-based because the
 // route has already matched when the page renders.
-const PERCENT = "￿"; // hides "%" from matchPath, which would turn "%2F" back into "/"
+const PERCENT = "\uFFFF"; // hides "%" from matchPath, which would turn "%2F" back into "/"
 
 export function useRouteMatch(pattern) {
   const { pathname } = useLocation();
