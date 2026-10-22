@@ -1,3 +1,5 @@
+> **This is a migration case study.** Start with [CASE.md](CASE.md): CRA → Vite, React Router 5 → 7, judged by 127 frozen tests. Modified from [conductor-oss/conductor](https://github.com/conductor-oss/conductor) `ui/` at `4ed6f796` (Apache-2.0). The text below is the upstream UI README.
+
 ## Conductor UI
 
 The UI is a React Single Page Application (SPA) built with [Vite](https://vite.dev/) (React Router 7 for routing, Vitest for unit tests). To get started, with Node 22 or newer (see `engines` in `package.json`) and `yarn` installed, first run `yarn install` from within the `/ui` directory to retrieve package dependencies.
