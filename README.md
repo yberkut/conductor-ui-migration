@@ -42,7 +42,7 @@ The default is '/'. You can customize this by setting the 'homepage' field in pa
 Refer
 
 - https://docs.npmjs.com/cli/v9/configuring-npm/package-json#homepage
-- https://create-react-app.dev/docs/deployment/#building-for-relative-paths (`homepage` is read by `vite.config.mjs` with the same rules and becomes Vite's `base`)
+- https://vite.dev/guide/build.html#public-base-path (`vite.config.mjs` reads `homepage` (or `PUBLIC_URL`) and sets it as Vite's `base`: `"."` or `"./x"` gives relative asset paths in production builds, and a full URL keeps only its path)
 
 ### Customization Hooks
 
