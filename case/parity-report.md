@@ -96,7 +96,10 @@ Much of the wall clock is installs, builds and test runs, not model time.
 ## Limits
 
 - Chromium only. Other browsers were not tested.
-- No real Conductor backend: the API is mocked from fixtures in the frozen suite.
+- The frozen suite mocks the API from fixtures. A manual smoke check against a real server
+  (`conductoross/conductor:latest`, image of 2026-10-14) loaded 5 real executions and showed the execution list,
+  an execution diagram, the definitions list and the definition editor with no uncaught errors. No automated
+  suite runs against a real server.
 - The frozen suite runs at `/`; the sub-path fix was checked separately.
 - The operator's own review of the diff is still pending; this report is not the sign-off.
 
