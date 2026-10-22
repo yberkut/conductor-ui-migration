@@ -8,7 +8,7 @@ sales drafts that are not part of the migration, so its total is an upper bound 
 |---|---|---|---|---|---|---|
 | 0. Setup and candidate choice | orchestrator (Opus 5.5) | 2026-10-22 16:46 | 2026-10-22 16:56 | 10 min | in orchestrator total | candidates probed with `gh`; spec written |
 | A. Baseline and characterization | phase A agent (Sonnet 5.5) | 2026-10-22T16:53:40+03:00 | 2026-10-22T18:30:19+03:00 | ~97 min | 63.3M (62.7M cache reads, 0.40M cache writes, 0.22M output); API-equivalent **$9.47** | 127 characterization tests over 20 routes, frozen and tagged `characterized`; a large share was waiting on installs, builds and test runs |
-| B. Migration | phase B agent (Sonnet 5.5) | 2026-10-22T18:32:48+03:00 | 2026-10-22T19:51:16+03:00 | ~78 min | recorded by the orchestrator (`case/tools/usage_cost.py`) | CRA 5 -> Vite 8, RR 5.2 -> 7, Jest -> Vitest in 2 source commits; about 25 min of the wall clock were the old-vs-new flake comparison (old app installed and built in a scratch folder) |
+| B. Migration | phase B agent (Sonnet 5.5) | 2026-10-22T18:32:48+03:00 | 2026-10-22T19:51:16+03:00 | ~78 min | 30.0M (28.6M cache reads, 1.31M cache writes, 0.13M output); API-equivalent **$7.46** | CRA 5 -> Vite 8, RR 5.2 -> 7, Jest -> Vitest in 2 source commits; about 25 min of the wall clock were the old-vs-new flake comparison (old app installed and built in a scratch folder) |
 
 ## Baseline
 
