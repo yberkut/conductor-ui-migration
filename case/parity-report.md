@@ -101,7 +101,7 @@ Much of the wall clock is installs, builds and test runs, not model time.
   an execution diagram, the definitions list and the definition editor with no uncaught errors. No automated
   suite runs against a real server.
 - The frozen suite runs at `/`; the sub-path fix was checked separately.
-- The operator's own review of the diff is still pending; this report is not the sign-off.
+- The operator reviewed and approved the full diff on 2026-10-22.
 
 ## Reproduce
 
