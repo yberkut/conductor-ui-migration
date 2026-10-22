@@ -7,7 +7,7 @@ sales drafts that are not part of the migration, so its total is an upper bound 
 | Phase | Agent model | Start | End | Wall clock | Tokens | Notes |
 |---|---|---|---|---|---|---|
 | 0. Setup and candidate choice | orchestrator (Opus 5.5) | 2026-10-22 16:46 | 2026-10-22 16:56 | 10 min | in orchestrator total | candidates probed with `gh`; spec written |
-| A. Baseline and characterization | phase A agent (Sonnet 5.5) | 2026-10-22T16:53:40+03:00 | 2026-10-22T18:30:19+03:00 | ~97 min | see agent transcript | 127 characterization tests over 20 routes, frozen and tagged `characterized`; a large share was waiting on installs, builds and test runs |
+| A. Baseline and characterization | phase A agent (Sonnet 5.5) | 2026-10-22T16:53:40+03:00 | 2026-10-22T18:30:19+03:00 | ~97 min | 63.3M (62.7M cache reads, 0.40M cache writes, 0.22M output); API-equivalent **$9.47** | 127 characterization tests over 20 routes, frozen and tagged `characterized`; a large share was waiting on installs, builds and test runs |
 
 ## Baseline
 
