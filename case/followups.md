@@ -45,3 +45,37 @@ Add phase B findings below this line.
   `button` on an `<a>`); `target="_blank"` for `newTab`.
 - `exact` matching, trailing slash and case-insensitivity: `/workflowDefs/` and `/WorkflowDefs` render
   the page; `/workflowDef/a/b/c`, `/execution`, `/index.html` render the bare app bar.
+
+## Phase B findings (found while migrating; not fixed, not required by the migration)
+
+Corrections to phase A's notes:
+
+- `@mui/icons-material` is **not** imported: `src/components/diagram/ZoomControls.jsx:2` is a comment, and the package is not in
+  `node_modules`. Nothing to declare (followups #12 is only true for `qs`, now declared as `6.10.3`, and for the dead
+  `@testing-library/jest-dom` import in `src/setupTests.js`, which was deleted together with that file).
+- `src/setupTests.js` was dead (no tests) and imported a package that was never installed.
+
+Consequences of the new toolchain that a user or maintainer can notice:
+
+| # | What | Where | Note |
+|---|---|---|---|
+| 14 | **No lint and no type check in the build any more.** CRA ran ESLint and the TypeScript checker inside `yarn build`; Vite does neither. `.eslintrc` extends `react-app`, a preset that shipped with `react-scripts`, so ESLint no longer runs at all. `npx tsc --noEmit` passes (exit 0). | `.eslintrc`, `package.json` | add `eslint-config-react-app` (or a flat config) and a `typecheck` script |
+| 15 | **Browser support is decided by Vite now.** `browserslist` in `package.json` (">0.2%, not dead") no longer drives the JS or CSS output; Vite 8 builds for `build.target: "baseline-widely-available"`. The field is left untouched. | `package.json`, `vite.config.mjs` | check against the browsers you must support, set `build.target` if needed |
+| 16 | **Build output layout changed.** `build/assets/*` instead of `build/static/{js,css}/*`, a `<script type="module" crossorigin>` in `index.html`, no `asset-manifest.json`. `build/` is still the output folder, source maps are still emitted. | `vite.config.mjs` | anything that serves or inspects `static/` or the manifest (reverse proxy rules, the Java server) needs a look |
+| 17 | **`process.env` is still how the code reads configuration.** `vite.config.mjs` defines `process.env` as an object (`NODE_ENV`, `PUBLIC_URL`, every `REACT_APP_*`), like CRA's DefinePlugin, so `src/App.jsx` and `src/serviceWorker.js` are unchanged. `import.meta.env.VITE_*` is the Vite way. | `vite.config.mjs`, `src/App.jsx:38,177`, `src/serviceWorker.js` | cosmetic; the object is repeated inline in the bundle |
+| 18 | **The `CustomRoutes` extension point changed shape.** In RR5 `<CustomRoutes />` sat inside `<Switch>` as a path-less catch-all and could render its own `<Route>`s. In RR7 it is the element of `<Route path="*">`; routes it adds must be inside its own `<Routes>`. It renders `<></>`, so nothing visible changed. | `src/App.jsx`, `src/plugins/CustomRoutes.jsx` | document for plugin authors |
+| 19 | **`use-location-state@2.5.0` is now a direct dependency.** It was already in the tree (under `react-router-use-location-state`); it is unmaintained, with a `react@^16.8` peer range. | `src/hooks/useQueryState.js` | the logic it provides is about 100 lines and could be inlined |
+| 20 | **`useRouteMatch` hook takes the route pattern as an argument** (`useRouteMatch("/taskDef/:name?")`) and repeats the pattern from `App.jsx`. Needed so params keep RR5's undecoded `%2F`/`%3F`/`%23`... values. A shared constants module would remove the duplication. | `src/hooks/useRouteMatch.js`, six pages | |
+| 21 | **`sass` had to move from 1.53 to 1.106** (`^1.70.0` declared): Vite 8 calls `sass.initAsyncCompiler`. TypeScript stays on 4.7.4 (Vite does not need it). Playwright's component-test runner brings its own `@vitejs/plugin-react@4.7`, which declares a `vite@<=7` peer, next to the root `vite@8`; it still fails the same 12 tests, for the same reason. | `package.json` | |
+| 22 | `engines.node` went from `>=14.17.0` to `^22.22.2 \|\| ^24.15.0 \|\| >=26.0.0`, set by `jsdom@30` and `vitest@5` (dev only). Vite 8 alone needs `^20.19.0 \|\| >=22.12.0`. Older `vitest`/`jsdom` would allow Node 20. | `package.json` | |
+| 23 | `ReactDOM.render` (deprecated in React 18) and MUI v4's `findDOMNode` warn in the **dev** server console, as they did under CRA's dev server. The production build is silent. | `src/index.jsx` | React 18 `createRoot` is out of scope |
+| 24 | `qs` is pinned to `6.10.3` (exact), the version the hoisted tree resolved before; newer 6.x is available. | `package.json` | |
+
+Test-infrastructure notes:
+
+- Phase A's flake note holds for the new build too: Monaco's overview-ruler canvas (`canvas.decorationsOverviewRuler`, 14 px wide at
+  the editor's right edge) is sometimes painted with a 1 px border column and sometimes not. Only the diff editor's ruler is masked by
+  the frozen suite, so the same flicker in the plain editor of `route states > workflow-def-version` fails that screenshot
+  (one column, ~760 px). See `metrics.md` (After) for how often it happened on the old and on the new build.
+- Unit tests: `vitest run` exits 0 with "No test files found" (`passWithNoTests`); its `include` is `src/**/*.{test,spec}.{js,jsx,ts,tsx}`
+  so it can never pick up the Playwright specs.

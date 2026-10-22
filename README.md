@@ -1,8 +1,8 @@
 ## Conductor UI
 
-The UI is a standard `create-react-app` React Single Page Application (SPA). To get started, with Node 14 and `yarn` installed, first run `yarn install` from within the `/ui` directory to retrieve package dependencies.
+The UI is a React Single Page Application (SPA) built with [Vite](https://vite.dev/) (React Router 7 for routing, Vitest for unit tests). To get started, with Node 22 or newer (see `engines` in `package.json`) and `yarn` installed, first run `yarn install` from within the `/ui` directory to retrieve package dependencies.
 
-For more information regarding CRA configuration and usage, see the official [doc site](https://create-react-app.dev/).
+For more information regarding Vite configuration and usage, see the official [doc site](https://vite.dev/). The configuration lives in `vite.config.mjs`; it keeps the conventions of the Create React App setup this project used before (`REACT_APP_*` variables, `PUBLIC_URL`, `PORT`, `WF_SERVER`, `homepage`, output folder `build`).
 
 > ### For upgrading users
 >
@@ -25,7 +25,7 @@ export WF_SERVER=http://localhost:8081
 yarn run start
 ```
 
-For additional customization (e.g., path rewriting), edit `setupProxy.js`. Note that this file is only used by the development server.
+For additional customization (e.g., path rewriting), edit `server.proxy` in `vite.config.mjs`. Note that this setting is only used by the development server.
 
 ### Hosting for Production
 
@@ -42,7 +42,7 @@ The default is '/'. You can customize this by setting the 'homepage' field in pa
 Refer
 
 - https://docs.npmjs.com/cli/v9/configuring-npm/package-json#homepage
-- https://create-react-app.dev/docs/deployment/#building-for-relative-paths
+- https://create-react-app.dev/docs/deployment/#building-for-relative-paths (`homepage` is read by `vite.config.mjs` with the same rules and becomes Vite's `base`)
 
 ### Customization Hooks
 
