@@ -23,7 +23,12 @@ ReactDOM.render(
   //<React.StrictMode>
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
-      <BrowserRouter basename={getBasename()} useTransitions={false}>
+      {/* history v4 dropped a trailing slash from the basename; React Router 7 keeps it, and then
+          "/conductor" would not match "/conductor/". */}
+      <BrowserRouter
+        basename={getBasename().replace(/\/+$/, "") || "/"}
+        useTransitions={false}
+      >
         <CssBaseline />
         <ReactQueryDevtools initialIsOpen={true} />
 
