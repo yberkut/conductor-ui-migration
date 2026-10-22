@@ -64,6 +64,10 @@ Same machine, same method (cold build, nothing else running, median of 3).
 | `npm audit`, production only | 118 · 120 | **26** |
 | Upstream e2e command end to end | 69 s | 11.2 s |
 
+`npm audit` counts are from 2026-10-22. The advisory database changes over time, so a re-run can differ.
+A re-run on 2026-10-23 with the same lock files gave **36** (production **24**) for the migrated app and
+134 (production 118) for the committed upstream lock: two moderate findings fewer on both sides.
+
 ## Known differences (not hidden)
 
 | # | Difference | Who notices | Decision |
