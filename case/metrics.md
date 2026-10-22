@@ -9,6 +9,9 @@ sales drafts that are not part of the migration, so its total is an upper bound 
 | 0. Setup and candidate choice | orchestrator (Opus 5.5) | 2026-10-22 16:46 | 2026-10-22 16:56 | 10 min | in orchestrator total | candidates probed with `gh`; spec written |
 | A. Baseline and characterization | phase A agent (Sonnet 5.5) | 2026-10-22T16:53:40+03:00 | 2026-10-22T18:30:19+03:00 | ~97 min | 63.3M (62.7M cache reads, 0.40M cache writes, 0.22M output); API-equivalent **$9.47** | 127 characterization tests over 20 routes, frozen and tagged `characterized`; a large share was waiting on installs, builds and test runs |
 | B. Migration | phase B agent (Sonnet 5.5) | 2026-10-22T18:32:48+03:00 | 2026-10-22T19:51:16+03:00 | ~78 min | 30.0M (28.6M cache reads, 1.31M cache writes, 0.13M output); API-equivalent **$7.46** | CRA 5 -> Vite 8, RR 5.2 -> 7, Jest -> Vitest in 2 source commits; about 25 min of the wall clock were the old-vs-new flake comparison (old app installed and built in a scratch folder) |
+| C. Independent review | phase C agent (Opus 5.5) | 2026-10-22T19:53+03:00 | 2026-10-22T20:28+03:00 | 36 min | 11.3M (10.8M cache reads, 0.41M cache writes, 0.09M output); API-equivalent **$5.95** | ACCEPT WITH FIXES; 1 medium defect (sub-path basename), 2 low known differences |
+| D. Fix and re-runs | orchestrator (Opus 5.5) | 2026-10-22T20:20+03:00 | 2026-10-22T20:45+03:00 | ~25 min | in orchestrator total | basename fix `8837a11`, sub-path check before/after, frozen suite 127/127 (2 workers; 4 workers on a busy desktop lost 1-3 tests to timeouts) |
+| Orchestrator, whole session | Opus 5.5 | 2026-10-22T16:46+03:00 | 2026-10-22T20:45+03:00 | 239 min elapsed, mostly waiting | 14.2M (13.9M cache reads, 0.17M cache writes, 0.08M output); API-equivalent **$5.69**, upper bound | also covers partner research briefing and sales drafts |
 
 ## Baseline
 
