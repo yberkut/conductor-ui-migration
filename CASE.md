@@ -19,7 +19,6 @@ Visuals, MUI and the React version stayed the same on purpose ([scope](case/SPEC
 | Production build | 94.5 s → **3.15 s** |
 | `npm audit` findings, production dependencies (2026-10-22; [drifts](case/parity-report.md#what-else-changed-measured)) | 118 → **26** |
 | Defects found by the independent review | 1 (sub-path deploy), **fixed** |
-| Time / API-equivalent cost | ≈ 4 h elapsed, **≤ $28.57** |
 
 Known differences are listed, not hidden: [parity report, "Known differences"](case/parity-report.md#known-differences-not-hidden).
 
